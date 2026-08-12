@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #efedd6;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  overflow-x: hidden; /* 防止元素未入屏前拉出横向滚动条 */
+}
+
+h1 {
+  margin: 10px;
+}
+
+.box {
+  background-color: steelblue;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 400px;
+  height: 200px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 4px 5px rgba(0, 0, 0, 0.3);
+
+  /* 核心修复：100vw 确保 100% 移出屏幕外，配合 transition 实现平滑飞入 */
+  transform: translateX(100vw);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.6s ease;
+}
+
+/* 偶数项初始从左侧屏幕外 (-100vw) 开始 */
+.box:nth-of-type(even) {
+  transform: translateX(-100vw);
+}
+
+/* 滚动进入视口后归位 */
+.box.show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.box h2 {
+  font-size: 45px;
+}
