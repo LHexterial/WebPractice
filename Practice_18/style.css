@@ -59,7 +59,7 @@ body {
 
 .clock-container {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }
@@ -84,8 +84,10 @@ body {
 .needle.second {
   transform: translate(-50%, -100%);
   height: 100px;
+  position: relative;
   background-color: #e74c3c;
 }
+
 
 .needle.hour {
     transform: translate(-50%, -100%);
