@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+
+*, *::before, *::after
+{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.root-container {
+    position: relative;
+    width: 100wh;   
+    height: 100vh;
+    overflow-y: hidden;
+}
+
+.left-container {
+    height: 100%;
+    width: 35%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: transform 0.5s ease-in;
+}
+
+.left-container > div
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+.left-container h1 {
+    font-size: 40px
+}
+
+
+.right-container {
+    height: 100%;
+    width: 65%;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transition: transform 0.5s ease-in;
+}
+
+
+.right-container > div {
+    height: 100%;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+
+.action-buttons button {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 1rem;
+}
+
+.action-buttons button:hover {
+    color: #222;
+}
+.action-buttons button:focus {
+    outline: none;
+}
+
+.action-buttons button {
+  position: absolute;
+  left: 35%;
+  top: 50%;
+  z-index: 100;
+}
+
+.action-buttons .down-button {
+  transform: translateX(-100%);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.action-buttons .up-button {
+  transform: translateY(-100%);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
