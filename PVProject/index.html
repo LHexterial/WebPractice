@@ -7,17 +7,13 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <div class="root-container">
-        <div class="main left">
-            
-        </div>
-        <div class="main mid">
-            
-        </div>
-        <div class="main right">
-            
-        </div>
-    </div>
+    <div id="app"></div>
 </body>
-<script src="./script.js"></script>
+<script type="module">
+    import { renderSections } from './render.js';
+    const controls = renderSections('#app');
+    controls.renderSections('section_1');
+    // 直接渲染到 #app
+    controls.renderSection('section_1')
+</script>
 </html>

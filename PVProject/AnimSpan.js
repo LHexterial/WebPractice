@@ -1,4 +1,4 @@
-class AnimSpan {
+export class AnimSpan {
     constructor(TextLib, SIndex, EIndex, SelfChar, options = {})
     {
         this._textlib = TextLib;
@@ -91,7 +91,7 @@ class AnimSpan {
 }
 
 
-function createAnimSpansFromString(str, options = {}) // options用于传递相应的参数
+export function createAnimSpansFromString(str, options = {}) // options用于传递相应的参数
 // 返回的是一个fragment 和 相应的animSpan的数组
 {
     const {
@@ -157,7 +157,7 @@ function createAnimSpansFromString(str, options = {}) // options用于传递相�
 }
 
 
-function startAnimationsSequentially(animSpans, interval = 300, animSpeed = 100)
+export function startAnimationsSequentially(animSpans, interval = 300, animSpeed = 100)
 {
     let currentIndex = 0;
     let isStopped = false;
