@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>测试PV</title>
+<!-- 参考项目字体：Noto Serif TC（衬线体），这里同时加载 JP 保证日文假名同风格 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400&family=Noto+Serif+TC:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #0a0a0a; }
+
+  /* 1920×1080 虚拟画布，等比缩放到视口 */
+  #stage {
+    position: fixed;
+    left: 50%; top: 50%;
+    width: 1920px; height: 1080px;
+    margin-left: -960px; margin-top: -540px;
+    transform-origin: center center;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 0 90px rgba(0, 0, 0, .65);
+  }
+  #bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+  /* 文字样式对齐参考项目 VerticalText：
+     writing-mode: vertical-lr / letterSpacing 0.2em / 逐字 span / 衬线 400 */
+  .lyric {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    writing-mode: vertical-lr;
+    letter-spacing: 0.2em;
+    color: #111;
+    font-family: 'Noto Serif JP', 'Noto Serif TC', 'Hiragino Mincho ProN', serif;
+    font-weight: 400;
+    line-height: 1.15;
+    will-change: transform;
+    user-select: none;
+  }
+  .ch {
+    opacity: 0;
+    transition: opacity .05s linear; /* 逐字淡入，微过渡平滑 */
+  }
+
+  /* HUD（不随舞台缩放） */
+  #hud {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 16px;
+    background: rgba(10, 10, 10, .72);
+    color: #ddd;
+    font: 12px/1.4 system-ui, sans-serif;
+    backdrop-filter: blur(4px);
+  }
+  #hudTop { display: flex; justify-content: space-between; opacity: .85; }
+  #controls { display: flex; align-items: center; gap: 10px; }
+  #controls button {
+    background: #222; color: #eee;
+    border: 1px solid #444; border-radius: 6px;
+    padding: 6px 14px; cursor: pointer; font-size: 13px;
+  }
+  #controls button:hover { background: #333; }
+  #seek { flex: 1; accent-color: #888; cursor: pointer; }
+  #hint { opacity: .55; }
+</style>
+</head>
+<body>
+  <div id="stage">
+    <img id="bg" src="bg.jpg" alt="">
+  </div>
+
+  <div id="hud">
+    <div id="hudTop">
+      <span id="hudTime">0.00s / 273.7s</span>
+      <span id="hudScale"></span>
+    </div>
+    <div id="controls">
+      <button id="btnPlay">▶ 播放</button>
+      <button id="btnLang">切到中文</button>
+      <input id="seek" type="range" min="0" max="16424" step="1" value="0">
+    </div>
+    <div id="hint">空格 = 播放/暂停 · ←/→ = ±0.5s · 拖动滑杆 = 跳帧（音频同步）· 全曲约 4 分 34 秒，约 11s 后第一句歌词出现</div>
+  </div>
+
+  <audio id="music" src="music.webm" preload="auto"></audio>
+
+  <script src="data.js"></script>
+  <script src="player.js"></script>
+</body>
+</html>
